@@ -21,6 +21,8 @@ typedef struct{
 
 global App app;
 global bool is_Running = true;
+global int squareX = SCREEN_WIDTH/2;
+global int squareY = SCREEN_HEIGHT/2;
 
 //This initializes our SDL and sets up the window 
 internal void initSDL(void){
@@ -69,12 +71,42 @@ void handleEvents(void){
 
 
 			case SDL_KEYDOWN:
+
+				printf("Pressed: ");
+				
 				//handle what key is down here
 				//We going to use scancodes because I don't want to change keyboard layouts :)
-				printf("Pressed: ");
 
-				if(event.key.keysym.scancode == SDL_SCANCODE_W) printf("W");
-			
+				switch(event.key.keysym.scancode){
+
+					case SDL_SCANCODE_W:
+						printf("W");
+						squareY-=SCREEN_HEIGHT/10;
+
+					break;
+					case SDL_SCANCODE_A:
+						printf("A");
+						squareX-=SCREEN_WIDTH/10;
+
+					break;
+					case SDL_SCANCODE_S:
+						printf("S");
+						squareY+=SCREEN_HEIGHT/10;
+
+					break;
+					case SDL_SCANCODE_D:
+						printf("D");
+						squareX+=SCREEN_WIDTH/10;
+
+					break;
+
+					default:
+
+					printf("Something else");
+
+
+				};
+
 				printf("\n");
 
 			break;
@@ -101,8 +133,8 @@ void RenderColor(void){
 	if(SDL_RenderClear(app.renderer)) printf("Failed to clear the screen: %s", SDL_GetError());
 
 	SDL_Rect rect;
-	rect.x = 100;
-	rect.y = 100;
+	rect.x = squareX;
+	rect.y = squareY;
 	rect.w = 200;
 	rect.h = 200;
 
