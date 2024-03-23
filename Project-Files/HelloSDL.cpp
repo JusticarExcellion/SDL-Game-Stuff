@@ -69,7 +69,24 @@ bool GetKeyboardInput(void){
 	return true;
 
 }
+void RenderColor(void){
 
+	if(SDL_RenderClear(app.renderer)) printf("Failed to clear the screen: %s", SDL_GetError());
+
+	SDL_Rect rect;
+	rect.x = 100;
+	rect.y = 100;
+	rect.w = 200;
+	rect.h = 200;
+
+	SDL_SetRenderDrawColor(app.renderer, 255,255,255,255);
+	SDL_RenderDrawRect(app.renderer, &rect);
+	SDL_RenderFillRect(app.renderer, &rect);
+
+	SDL_SetRenderDrawColor(app.renderer, 0,0,0,255);
+
+	SDL_RenderPresent(app.renderer);
+}
 
 
 int main(int argc, char* argv[]){
@@ -80,6 +97,7 @@ int main(int argc, char* argv[]){
 	while(GetKeyboardInput()){
 
 
+		RenderColor();
 
 	}
 
