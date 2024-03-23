@@ -70,12 +70,19 @@ void handleEvents(void){
 
 			case SDL_KEYDOWN:
 				//handle what key is down here
-				//We going to use scancodes because I don't want to change keyboard layouts :)
 				printf("Pressed: ");
-
-				if(event.key.keysym.scancode == SDL_SCANCODE_W) printf("W");
 			
-				printf("\n");
+				switch(event.keysym){
+
+
+					case SDL_SCANCODE_W:
+						
+						printf("W\n");
+
+					break;
+
+
+				};
 
 			break;
 
